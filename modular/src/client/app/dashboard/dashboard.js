@@ -5,9 +5,10 @@
         .module('app.dashboard')
         .controller('Dashboard', Dashboard);
 
-    Dashboard.$inject = ['$q', 'dataservice', 'logger'];
+    Dashboard.$inject = ['$q', 'dataservice', 'logger', 'message'];
 
-    function Dashboard($q, dataservice, logger) {
+
+    function Dashboard($q, dataservice, logger, message) {
 
         /*jshint validthis: true */
         var vm = this;
@@ -23,6 +24,7 @@
         activate();
 
         function activate() {
+            toastr.warning("I received secret message: " + message.first);
             var promises = [getAvengerCount(), getAvengersCast()];
 //            Using a resolver on all routes or dataservice.ready in every controller
 //            return dataservice.ready(promises).then(function(){
